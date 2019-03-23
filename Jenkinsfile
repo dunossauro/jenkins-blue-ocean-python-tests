@@ -1,9 +1,8 @@
 pipeline {
-  agent {
-    dockerfile true
-  }
+  // Run code inside docker using `Dockerfile` in repo
+  agent { dockerfile true }
   stages {
-    stage('Testes de unidade') {
+    stage('Testes de unidade') { // Run unittests in first stage
       steps {
         sh '''
 pipenv install &&
