@@ -1,5 +1,5 @@
 from unittest import TestCase
-from app.example import add
+from app.example import add, sub
 
 
 class Test(TestCase):
@@ -7,4 +7,4 @@ class Test(TestCase):
         self.assertEqual(add(1, 1), 2)
 
     def test_sub(self):
-        self.assertEqual(add(1, 1), 0)
+        self.assertEqual(sub(1, 1), 0)
