@@ -5,15 +5,15 @@ pipeline {
   stages {
     stage('Testes de unidade') {
       steps {
-        sh '''
+        try {
+          sh '''
 pipenv install &&
 pipenv run nose2 --plugin nose2.plugins.junitxml --junit-xml'''
+        }
+       finally {
+       junit(allowEmptyResults: true, testResults: 'nose2-junit.xml', keepLongStdio: true)
       }
     }
-    stage('Coletar reports') {
-      steps {
-        junit(allowEmptyResults: true, testResults: 'nose2-junit.xml', keepLongStdio: true)
-      }
     }
   }
 }

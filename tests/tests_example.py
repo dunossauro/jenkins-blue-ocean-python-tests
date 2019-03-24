@@ -7,4 +7,4 @@ class Test(TestCase):
         self.assertEqual(add(1, 1), 2)
 
     def test_sub(self):
-        self.assertEqual(sub(1, 1), 0)
+        self.assertEqual(add(1, 1), 0)
