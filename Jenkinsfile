@@ -1,13 +1,18 @@
 pipeline {
-  // Run code inside docker using `Dockerfile` in repo
-  agent { dockerfile true }
+  agent {
+    dockerfile true
+  }
   stages {
-    stage('Testes de unidade') { // Run unittests in first stage
+    stage('Testes de unidade') {
       steps {
         sh '''
 pipenv install &&
 pipenv run nose2 --plugin nose2.plugins.junitxml --junit-xml'''
-        junit(testResults: 'nose2-junit.xml', keepLongStdio: true)
+      }
+    }
+    stage('Coletar reports') {
+      steps {
+        junit(allowEmptyResults: true, testResults: 'nose2-junit.xml', keepLongStdio: true)
       }
     }
   }
